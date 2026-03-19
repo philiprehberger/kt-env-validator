@@ -6,7 +6,7 @@ package com.philiprehberger.envvalidator
  * Use [required] to declare mandatory variables and [optional] for variables
  * with default values or that may be absent.
  */
-class EnvConfigScope internal constructor(private val source: Map<String, String>) {
+public class EnvConfigScope internal constructor(private val source: Map<String, String>) {
 
     internal val vars = mutableListOf<EnvVar>()
 
@@ -19,7 +19,7 @@ class EnvConfigScope internal constructor(private val source: Map<String, String
      * @param name the environment variable name
      * @return an [EnvVar] for further configuration (type, constraints, etc.)
      */
-    fun required(name: String): EnvVar {
+    public fun required(name: String): EnvVar {
         val envVar = EnvVar(name, source[name], required = true)
         vars.add(envVar)
         return envVar
@@ -34,7 +34,7 @@ class EnvConfigScope internal constructor(private val source: Map<String, String
      * @param name the environment variable name
      * @return an [EnvVar] for further configuration (type, constraints, default, etc.)
      */
-    fun optional(name: String): EnvVar {
+    public fun optional(name: String): EnvVar {
         val envVar = EnvVar(name, source[name], required = false)
         vars.add(envVar)
         return envVar
@@ -46,8 +46,8 @@ class EnvConfigScope internal constructor(private val source: Map<String, String
  *
  * @property values a map of variable names to their resolved (parsed) values
  */
-data class EnvConfigResult(
-    val values: Map<String, Any?>,
+public data class EnvConfigResult(
+    public val values: Map<String, Any?>,
 ) {
     /**
      * Retrieves a resolved value by variable name, cast to the expected type.
@@ -56,7 +56,7 @@ data class EnvConfigResult(
      * @return the resolved value, or null if not set
      */
     @Suppress("UNCHECKED_CAST")
-    operator fun <T> get(name: String): T? = values[name] as T?
+    public operator fun <T> get(name: String): T? = values[name] as T?
 }
 
 /**
@@ -70,7 +70,7 @@ data class EnvConfigResult(
  * @return an [EnvConfigResult] containing all resolved values
  * @throws EnvValidationException if any validation errors are found
  */
-fun envConfig(
+public fun envConfig(
     source: Map<String, String> = System.getenv(),
     block: EnvConfigScope.() -> Unit,
 ): EnvConfigResult {

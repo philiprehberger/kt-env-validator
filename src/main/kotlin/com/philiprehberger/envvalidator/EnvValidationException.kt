@@ -8,8 +8,8 @@ package com.philiprehberger.envvalidator
  *
  * @property errors the list of validation error messages
  */
-class EnvValidationException(
-    val errors: List<String>,
+public class EnvValidationException(
+    public val errors: List<String>,
 ) : RuntimeException(
     "Environment validation failed:\n${errors.joinToString("\n") { "  - $it" }}",
 )

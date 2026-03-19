@@ -10,8 +10,8 @@ package com.philiprehberger.envvalidator
  * @property rawValue the raw string value from the environment (null if missing)
  * @property required whether this variable is required
  */
-class EnvVar internal constructor(
-    val name: String,
+public class EnvVar internal constructor(
+    public val name: String,
     private val rawValue: String?,
     private val required: Boolean,
 ) {
@@ -25,7 +25,7 @@ class EnvVar internal constructor(
      *
      * @return this [EnvVar] for chaining
      */
-    fun int(): EnvVar {
+    public fun int(): EnvVar {
         typeName = "Int"
         parser = { it.toInt() }
         return this
@@ -36,7 +36,7 @@ class EnvVar internal constructor(
      *
      * @return this [EnvVar] for chaining
      */
-    fun long(): EnvVar {
+    public fun long(): EnvVar {
         typeName = "Long"
         parser = { it.toLong() }
         return this
@@ -49,7 +49,7 @@ class EnvVar internal constructor(
      *
      * @return this [EnvVar] for chaining
      */
-    fun boolean(): EnvVar {
+    public fun boolean(): EnvVar {
         typeName = "Boolean"
         parser = { value ->
             when (value.lowercase()) {
@@ -66,7 +66,7 @@ class EnvVar internal constructor(
      *
      * @return this [EnvVar] for chaining
      */
-    fun float(): EnvVar {
+    public fun float(): EnvVar {
         typeName = "Float"
         parser = { it.toFloat() }
         return this
@@ -78,7 +78,7 @@ class EnvVar internal constructor(
      * @param delimiter the delimiter to split on (default: `","`)
      * @return this [EnvVar] for chaining
      */
-    fun list(delimiter: String = ","): EnvVar {
+    public fun list(delimiter: String = ","): EnvVar {
         typeName = "List"
         parser = { it.split(delimiter).map { item -> item.trim() } }
         return this
@@ -92,7 +92,7 @@ class EnvVar internal constructor(
      * @param range the acceptable range of values
      * @return this [EnvVar] for chaining
      */
-    fun range(range: IntRange): EnvVar {
+    public fun range(range: IntRange): EnvVar {
         validators.add(Validator("must be in range $range") { value ->
             val intVal = when (value) {
                 is Int -> value
@@ -110,7 +110,7 @@ class EnvVar internal constructor(
      * @param values the set of allowed values
      * @return this [EnvVar] for chaining
      */
-    fun oneOf(vararg values: String): EnvVar {
+    public fun oneOf(vararg values: String): EnvVar {
         val allowed = values.toSet()
         validators.add(Validator("must be one of $allowed") { value ->
             value.toString() in allowed
@@ -124,7 +124,7 @@ class EnvVar internal constructor(
      * @param value the default value
      * @return this [EnvVar] for chaining
      */
-    fun default(value: Any): EnvVar {
+    public fun default(value: Any): EnvVar {
         defaultValue = value
         return this
     }
