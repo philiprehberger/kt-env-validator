@@ -1,5 +1,9 @@
 # env-validator
 
+[![Tests](https://github.com/philiprehberger/kt-env-validator/actions/workflows/publish.yml/badge.svg)](https://github.com/philiprehberger/kt-env-validator/actions/workflows/publish.yml)
+[![Maven Central](https://img.shields.io/maven-central/v/com.philiprehberger/env-validator.svg)](https://central.sonatype.com/artifact/com.philiprehberger/env-validator)
+[![License](https://img.shields.io/github/license/philiprehberger/kt-env-validator)](LICENSE)
+
 Declarative environment variable validation and typed loading for Kotlin.
 
 ## Installation
@@ -62,6 +66,13 @@ Environment validation failed:
 | `EnvVar.default(value)` | Sets default value when variable is absent |
 | `EnvConfigResult[name]` | Retrieves resolved value by name |
 | `EnvValidationException` | Thrown with all validation errors collected |
+
+## Development
+
+```bash
+./gradlew build
+./gradlew test
+```
 
 ## License
 
