@@ -11,7 +11,7 @@ Declarative environment variable validation and typed loading for Kotlin.
 ### Gradle Kotlin DSL
 
 ```kotlin
-implementation("com.philiprehberger:env-validator:0.1.0")
+implementation("com.philiprehberger:env-validator:0.1.4")
 ```
 
 ### Maven
@@ -20,7 +20,7 @@ implementation("com.philiprehberger:env-validator:0.1.0")
 <dependency>
     <groupId>com.philiprehberger</groupId>
     <artifactId>env-validator</artifactId>
-    <version>0.1.0</version>
+    <version>0.1.4</version>
 </dependency>
 ```
 
